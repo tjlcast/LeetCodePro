@@ -1,15 +1,22 @@
 package LinkedList;
 
-class ListNode {
-	int val;
-	ListNode next;
-
-	ListNode(int x) {
-		val = x;
-	}
-}
+import Type.ListNode;
+import Utils.LinkedListUtils;
 
 public class Solution {
+
+	public static void main(String[] args) {
+		
+		LinkedListUtils<ListNode> utils = new LinkedListUtils<>(ListNode.class);
+		int[] d1 = { 2, 4, 3 };
+		int[] d2 = { 5, 6, 4 };
+		ListNode l1 = utils.buildLinkedList(d1);
+		ListNode l2 = utils.buildLinkedList(d2);
+
+		ListNode ans = new Solution().addTwoNumbers(l1, l2);
+		utils.printLinkedList(ans);
+	}
+
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
 		ListNode root = new ListNode(-1);
@@ -34,9 +41,7 @@ public class Solution {
 			if (l2 != null) {
 				l2 = l2.next;
 			}
-			if (num1 + num2 >= 10) {
-				car = (num1 + num2) / 10;
-			}
+			car = (num1 + num2 + car) / 10;
 		}
 		return root.next;
 	}
