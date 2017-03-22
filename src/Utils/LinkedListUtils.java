@@ -4,11 +4,30 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import Type.ListNode;
+
 public class LinkedListUtils<K> {
 	Class<K> cls;
 
 	public LinkedListUtils(Class<K> cls) {
 		this.cls = cls;
+	}
+	
+	public ListNode sortLinkedList(ListNode data) {
+		
+		ListNode root = new ListNode(-1) ;
+		while(data != null) {
+			//	get an item from list
+			ListNode cur = data ;
+			data = data.next ;
+			
+			//	insert into current position 
+			ListNode temp=root ;
+			for(; temp.next!=null&&temp.next.val<cur.val; temp=temp.next) ; // find the position => temp
+			cur.next = temp.next.next ;
+			temp.next = cur ;
+		}
+		return root.next ;
 	}
 
 	@SuppressWarnings("unchecked")
