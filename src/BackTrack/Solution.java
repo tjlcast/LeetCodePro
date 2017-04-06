@@ -39,6 +39,7 @@ public class Solution {
 	 * @param s
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private List<List<String>> dp(String s) {
 		ArrayList<List<String>> ans = new ArrayList<List<String>>();
 		ArrayList<String> tmpSet = new ArrayList<String>();
@@ -90,7 +91,7 @@ public class Solution {
 	public static void main(String[] args) {
 		String word = "ABCCD";
 		char[][] board = { { 'A', 'B', 'C', 'E' }, { 'S', 'F', 'C', 'S' }, { 'A', 'D', 'E', 'E' } };
-		boolean ans = new Solution().exist(board, word) ;
+		boolean ans = new Solution().exist(board, word);
 		System.out.println(ans);
 	}
 
