@@ -1,8 +1,10 @@
-public class _287_Find_the_Duplicate_Number {
+package ArrayAndString;
+
+public class _287_Find_the_DuplicateNumber {
 	public static void main(String[] args) {
 		int[] nums = {1, 1, 2} ;
-		int work = new _287_Find_the_Duplicate_Number().work(nums) ;
-		
+		int work = new _287_Find_the_DuplicateNumber().work(nums) ;
+		System.out.println(work);
 	}
 
 	public int work(int[] nums) {
