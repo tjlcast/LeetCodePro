@@ -6,7 +6,6 @@ public class _328_Odd_Even_Linked_List {
 
 	public static void main(String[] args) {
 		
-
 	}
 	
 	public ListNode work(ListNode head) {
@@ -43,11 +42,3 @@ public class _328_Odd_Even_Linked_List {
 	    }
 	}
 }
-
-
-
-//public class ListNode {
-//	 	int val;
-//	 	ListNode next;
-//	 	ListNode(int x) { val = x; }
-// }
