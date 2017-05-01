@@ -18,7 +18,7 @@ public class _49_Group_Anagrams {
 	
 	public class Solution {
 	    public List<List<String>> groupAnagrams(String[] strs) {
-	    	HashMap<String, List<String>> dict = new HashMap() ;
+	    	HashMap<String, List<String>> dict = new HashMap<String, List<String>>() ;
 	        for(String s : strs) {
 	        	char[] charL = s.toCharArray() ;
 	        	Arrays.sort(charL);
