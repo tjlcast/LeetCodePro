@@ -8,8 +8,10 @@ import java.util.List;
 public class _49_Group_Anagrams {
 
 	public static void main(String[] args) {
-		
-
+		String[] strs = {"hello", "olleh", "apple", "banana", "anaban"} ;
+		List<List<String>> work = new _49_Group_Anagrams().work(strs) ;
+		System.out.println(work);
+		work.hashCode() ;
 	}
 	
 	public List<List<String>> work (String[] strs) {
