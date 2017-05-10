@@ -3,6 +3,7 @@ java：
 		Arrays.sort(points, ( x , y) -> x[0] == y[0] ? x[1] - y[1] : x[0] -y[0]); // good
 		该用法为java8的Lambda表达式，λ表达式有三部分组成：参数列表，箭头（->），以及一个表达式或语句块。再例如：() -> { System.out.println("Hello Lambda!"); }
 －－－－｜Future<?>范型不确定
+－－－－｜HashMap的拷贝构造函数比默认构造函数的开销大得多
 
 Greedy	：
 －－－－｜这道题目是活动选择问题(Activity-Selection Problem)的变形。活动选择问题是《算法导论》里面关于贪心算法的第一个问题。这个问题是这样的，有一组活动，每个活动都有一个开始时间S和结束时间F，
