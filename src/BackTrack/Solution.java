@@ -34,7 +34,7 @@ public class Solution {
 
 	/**
 	 * url: https://leetcode.com/problems/palindrome-partitioning/#/description
-	 * for test
+	 * for _test
 	 * 
 	 * @param s
 	 * @return

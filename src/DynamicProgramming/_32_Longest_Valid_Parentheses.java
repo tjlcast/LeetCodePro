@@ -23,9 +23,11 @@ public class _32_Longest_Valid_Parentheses {
     }
 
     class Solution {
-        int ans = -1 ;
+        int ans = 0 ;
 
         int longestValidParentheses(String s) {
+            if (s.length()==0) return 0 ;
+
             Stack<Integer> stack = new Stack<>() ;
             int left = 0 ;
 
