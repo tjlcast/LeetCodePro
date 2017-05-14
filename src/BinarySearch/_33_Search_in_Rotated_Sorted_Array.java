@@ -1,4 +1,4 @@
-package ArrayAndString;
+package BinarySearch;
 
 /**
  * Created by tangjialiang on 17/5/13.
