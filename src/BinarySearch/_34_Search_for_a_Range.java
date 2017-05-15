@@ -5,10 +5,10 @@ package BinarySearch;
  */
 public class _34_Search_for_a_Range {
     public static void main(String[] args) {
-        int[] nums = {1, 1, 2, 3, 3, 3, 4, 5} ;
-        int target = 4 ;
+        int[] nums = { 2, 2} ;
+        int target = 3 ;
         int[] range = new _34_Search_for_a_Range().work(nums, target) ;
-        System.out.println("leftRange: " + range);
+        System.out.println("leRange: " + range);
     }
 
     public int[] work(int[] nums, int target) {
@@ -40,7 +40,13 @@ public class _34_Search_for_a_Range {
                     right = mid - 1 ;
                 }
             }
-            return (nums[left]==target)?(left):(-1) ;
+            int ans = -1 ;
+            try {
+                ans = (nums[left] == target) ? (left) : (-1);
+            }catch (Exception e){
+
+            }
+            return ans ;
         }
 
         int findLeftRange(int[] nums, int target) {
@@ -60,7 +66,13 @@ public class _34_Search_for_a_Range {
                 }
             }
 
-            return (nums[left]==target)?(left):(-1) ;
+            int ans = -1 ;
+            try {
+                ans = (nums[left] == target) ? (left) : (-1);
+            } catch (Exception e){
+
+            }
+            return ans ;
         }
     }
 }
