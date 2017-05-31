@@ -2,7 +2,11 @@ package Greedy;
 
 /**
  * Created by tangjialiang on 2017/5/28.
- *
+ *       -----------
+ *       |         |
+ *       o o o o o o - - - - - - - - - - - - -
+ *         | | | | |     |   |   | |   |
+ *         -----------------------------
  */
 public class _45_Jump_Game_II {
 
