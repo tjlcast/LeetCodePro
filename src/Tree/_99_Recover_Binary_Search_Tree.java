@@ -3,6 +3,7 @@ package Tree;
 import Type.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 public class _99_Recover_Binary_Search_Tree {
 
     public static void main(String[] args) {
-
+    	
     }
 
     public void work(TreeNode root) {
@@ -21,38 +22,29 @@ public class _99_Recover_Binary_Search_Tree {
 
     public class Solution {
         List<Integer> sb = new ArrayList<Integer>() ;
+        int position = 0 ;
 
         public void recoverTree(TreeNode root) {
             // get the sorted string
-            int pos1 = -1 ;
-            int pos2 = -1 ;
             inTravel(root);
 
-            // find the wrong position
-            for(int i=0; i<sb.size(); i++) {
-                // judge forward
-                if (i!=0) {
-                    if (sb.get(i-1) - sb.get(i) > 0) {
-                        pos1 = sb.get(i) ;
-                    }
-                }
-                // judge backward
-                if (i!=sb.size()-1) {
-                    if (sb.get(i) - sb.get(i+1) > 0) {
-                        pos2 = sb.get(i) ;
-                    }
-                }
-            }
-
-
-
+            // sort the array 
+            Collections.sort(sb);
+         
+            // add the arr to tree 
+            addArr(root) ;
         }
 
-        private void swap(TreeNode root, int oldVal, int newVal) {
-            if (root==null) return ;
-
-            swap(root.left) ;
-
+        private void addArr(TreeNode root) {
+        	if (root == null) return ;
+        	
+        	addArr(root.left) ;
+        	if (root.val != sb.get(position)) {
+        		root.val = sb.get(position) ;
+        	}
+        	position+=1 ;
+        	addArr(root.right);
+        	return ;
         }
 
         private void inTravel(TreeNode root) {
