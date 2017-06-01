@@ -1,4 +1,4 @@
-package tree;
+package Tree;
 
 
 import Type.TreeNode;
