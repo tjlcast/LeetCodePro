@@ -24,14 +24,14 @@ public class _99_Recover_Binary_Search_Tree {
         List<Integer> sb = new ArrayList<Integer>() ;
         int position = 0 ;
 
-        public void recoverTree(TreeNode root) {
+        void recoverTree(TreeNode root) {
             // get the sorted string
             inTravel(root);
 
             // sort the array 
             Collections.sort(sb);
          
-            // add the arr to tree 
+            // add the arr to tree
             addArr(root) ;
         }
 
@@ -44,7 +44,7 @@ public class _99_Recover_Binary_Search_Tree {
         	}
         	position+=1 ;
         	addArr(root.right);
-        	return ;
+
         }
 
         private void inTravel(TreeNode root) {
@@ -54,7 +54,6 @@ public class _99_Recover_Binary_Search_Tree {
             sb.add(root.val) ;
             inTravel(root.right);
 
-            return  ;
         }
 
     }
