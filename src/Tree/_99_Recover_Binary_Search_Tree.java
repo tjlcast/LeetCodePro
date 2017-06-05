@@ -13,7 +13,7 @@ import java.util.List;
 public class _99_Recover_Binary_Search_Tree {
 
     public static void main(String[] args) {
-    	
+        System.out.println("hello world");
     }
 
     public void work(TreeNode root) {
