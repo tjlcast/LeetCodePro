@@ -12,7 +12,13 @@ public class LinkedListUtils<K> {
 	public LinkedListUtils(Class<K> cls) {
 		this.cls = cls;
 	}
-	
+
+	/**
+	*
+	* sort a linked list
+	* by: tjlcast
+	*
+	* */
 	public ListNode sortLinkedList(ListNode data) {
 		
 		ListNode root = new ListNode(-1) ;
@@ -30,7 +36,14 @@ public class LinkedListUtils<K> {
 		return root.next ;
 	}
 
-	@SuppressWarnings("unchecked")
+
+
+	/**
+	*
+	* print a linked list
+	* by: tjlcast
+	*
+	* */
 	public void printLinkedList(K root) {
 		
 		try {
@@ -51,6 +64,10 @@ public class LinkedListUtils<K> {
 		
 	}
 
+	/**
+	* tips: return the list without head node (begin with the first useful node )
+	* how: ListNode listNode = new LinkedListUtils<ListNode>(ListNode.class).buildLinkedList(arr);
+	* */
 	public K buildLinkedList(int[] data) {
 
 		Constructor<K> declaredConstructor;
