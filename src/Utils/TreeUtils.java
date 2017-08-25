@@ -20,7 +20,7 @@ public class TreeUtils {
 
     public static TreeNode createTreeNode(int[] arr, int pos) {
         int len = arr.length ;
-        if (pos >= len) {
+        if (pos > len) {
             return null ;
         }
 
