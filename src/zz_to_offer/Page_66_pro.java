@@ -39,7 +39,6 @@ public class Page_66_pro {
                     return findNumFromInput(nums, k, mid+1, end) ;
                 } else {
                     // use bSearch find [begin, mid)
-                    // todo
                     return bSearch(nums, k, begin, mid-1) ;
                 }
             } else {
@@ -47,7 +46,6 @@ public class Page_66_pro {
                     return findNumFromInput(nums, k, begin, mid-1) ;
                 } else {
                     // use bSearch find (mid, end]
-                    // todo
                     return bSearch(nums, k, mid+1, end) ;
                 }
             }
