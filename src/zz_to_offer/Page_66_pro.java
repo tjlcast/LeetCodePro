@@ -21,11 +21,7 @@ public class Page_66_pro {
     class MySolution {
         /**
          * if containing return the postition, otherwise return -1
-         * @param nums
-         * @param k
-         * @param begin
-         * @param end
-         * @return the position or flag
+         * tips: 注意，在进行数据段选择时，优先对旋转数组的形状进行判断，即比较数据段的第一个元素nums[start]与中间的元素nums[mid].
          */
         public int findNumFromInput(int[] nums, int k, int begin, int end) {
             int mid = (begin + end) / 2 ;
@@ -51,6 +47,9 @@ public class Page_66_pro {
             }
         }
 
+        /**
+         * 非递归二分查找。
+         */
         private int bSearch(int[] nums, int k, int begin, int end) {
 
             while(begin != end) {
