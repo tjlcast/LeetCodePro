@@ -41,6 +41,11 @@ public class _5_Longest_Palindromic_Substring {
     class Solution {
         /**
          * 动态规划： 时间复杂度为n*log(n)具象化。n*n的矩阵对角线的一半遍历。
+         *
+         * dp(i, j) = dp(i+1, j-1),
+         * 注意： 边界情况，dp(i, i) = 1: 即一个元素的情况
+         *                dp(i, i+1) = 1: 即两个元素相邻且相同的情况
+         *
          */
         private int[][] dp = null ;
         private int maxLen = 1 ;

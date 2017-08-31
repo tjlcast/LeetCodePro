@@ -33,6 +33,10 @@ public class _6_ZigZag_Conversion {
     }
 
     class Solution {
+        /**
+         * 操作分为两个阶段。第一个阶段是"竖"的数据，第二个阶段是"斜"的数据。
+         * 注意，在第二阶段中数据在numRows<=2时长度为0。
+         */
         private String ans = "" ;
 
         public String convert(String s, int numRows) {
