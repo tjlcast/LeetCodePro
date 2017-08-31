@@ -2,6 +2,8 @@ package Utils;
 
 import Type.TreeNode;
 
+import java.util.LinkedList;
+
 /**
  * Created by tangjialiang on 2017/8/21.
  */
@@ -76,4 +78,49 @@ public class TreeUtils {
             System.out.println(node.val) ;
         }
     }
+
+
+    /**
+     * 计算树的深度(DFS)
+     * @param root
+     * @return
+     */
+    public static int treeDepth(TreeNode root) {
+        if (root == null) return 0 ;
+
+        int leftChildDep = treeDepth(root.left);
+        int rightChildDep = treeDepth(root.right) ;
+
+        int max = Math.max(leftChildDep, rightChildDep);
+        int curD = max + 1 ;
+        return curD ;
+    }
+
+    /**
+     * 计算树的深度(BFS)
+     * @param root
+     * @return
+     */
+    public static int treeDepthBFS(TreeNode root) {
+        int dep = 0 ;
+        LinkedList<TreeNode> queue = new LinkedList<>() ;
+        TreeNode end = new TreeNode(-1) ;
+        queue.add(root) ;
+        queue.add(end) ;
+
+        while(queue.size() != 1) {
+            TreeNode pop = queue.pop();
+
+            if (pop == end) {
+                // finish a line
+                queue.add(pop) ;
+                dep += 1 ;
+            } else {
+                queue.add(pop.left) ;
+                queue.add(pop.right) ;
+            }
+        }
+        return dep ;
+    }
+
 }
