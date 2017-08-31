@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * Created by tangjialiang on 2017/8/31.
+ *
  */
 public class _3_Longest_Substring_Without_Repeating_Characters {
     /**
@@ -32,6 +33,11 @@ public class _3_Longest_Substring_Without_Repeating_Characters {
     }
 
     class Solution {
+        /**
+         * 维护一个出现一次的数据窗口。
+         * 在遍历数字的时候，把数字和数字的位置保存到HashMap中。
+         */
+
         private HashMap<Character, Integer> appearPosition = new HashMap<>() ;
         // Character, integer, 记录上次字符加入时的位置。
         int line = 0 ;

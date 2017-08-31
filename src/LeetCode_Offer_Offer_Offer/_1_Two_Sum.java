@@ -37,6 +37,11 @@ public class _1_Two_Sum {
 
 
     class Solution {
+        /**
+         * 相加的两个数分别选取：
+         *  第一个数通过数字遍历得到，并保存到HashMap(存取时间为O(1))
+         *  第二个数通过在已遍历的数中选取
+         */
         HashMap<Integer, Integer> map = new HashMap<>() ;
 
         public int[] twoSum(int[] nums, int target) {

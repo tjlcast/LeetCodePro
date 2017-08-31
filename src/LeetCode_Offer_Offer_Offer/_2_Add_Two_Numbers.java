@@ -33,6 +33,11 @@ public class _2_Add_Two_Numbers {
     }
 
     class Solution {
+        /**
+         * 根据加法法则，每个nodel通过node1.val + node2.val + carr得到。
+         * 注意： 在计算的最后，若carr不为零，应该额外添加一个节点。
+         */
+
         ListNode headNode = new ListNode(-1) ;
         ListNode tail = headNode ;
 
