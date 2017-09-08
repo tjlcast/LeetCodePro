@@ -2,6 +2,7 @@ package LeetCode_Offer_Offer_Offer;
 
 /**
  * Created by tangjialiang on 2017/8/31.
+ *
  */
 public class _5_Longest_Palindromic_Substring {
     /**
