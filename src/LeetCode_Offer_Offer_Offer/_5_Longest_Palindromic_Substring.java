@@ -22,7 +22,7 @@ public class _5_Longest_Palindromic_Substring {
      */
 
     public static void main(String[] args) {
-        String str = "a" ;
+        String str = "avcvb" ;
 
         _5_Longest_Palindromic_Substring longest_palindromic_substring = new _5_Longest_Palindromic_Substring() ;
         String work = longest_palindromic_substring.work(str);
@@ -31,7 +31,7 @@ public class _5_Longest_Palindromic_Substring {
     }
 
     public String work(String s) {
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         String s1 = solution.longestPalindrome(s);
         return s1 ;
     }
@@ -91,4 +91,58 @@ public class _5_Longest_Palindromic_Substring {
         }
 
     }
+
+    class Solution1 {
+
+        private int maxLen = 0 ;
+        private int maxL = 0 ;
+        private int maxR = 0 ;
+        private int isP[][] = null ;
+
+        public String longestPalindrome(String s) {
+            isP = new int[s.length()][s.length()] ;
+            recursion(0, s.length()-1, s) ;
+            return s.substring(maxL, maxR+1) ;
+        }
+
+        private boolean recursion(int l, int r, String s) {
+            if (isP[l][r] != 0) return (isP[l][r]==1) ? (true) : (false);
+
+            if (l == r) {
+                isP[l][r] = 1 ;
+                if (maxLen < 1) {
+                    maxLen = 1 ;
+                    maxL = l ;
+                    maxR = r ;
+                }
+                return true ;
+            }
+            if (r-l==1 && s.charAt(l)==s.charAt(r)) {
+                isP[l][r] = 1 ;
+                if (maxLen < 2) {
+                    maxLen = 2 ;
+                    maxL = l ;
+                    maxR = r ;
+                }
+                return true ;
+            }
+
+            if (s.charAt(l)==s.charAt(r) && recursion(l+1, r-1, s)) {
+                isP[l][r] = 1 ;
+                if (maxLen < r-l+1) {
+                    maxLen = r-l+1 ;
+                    maxL = l ;
+                    maxR = r ;
+                }
+                return true ;
+            } else {
+                isP[l][r] = 2 ;
+                recursion(l+1, r, s) ;
+                recursion(l, r-1, s) ;
+                return false ;
+            }
+        }
+
+    }
+
 }
