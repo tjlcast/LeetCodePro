@@ -22,7 +22,7 @@ public class _5_Longest_Palindromic_Substring {
      */
 
     public static void main(String[] args) {
-        String str = "avcvb" ;
+        String str = "accvb" ;
 
         _5_Longest_Palindromic_Substring longest_palindromic_substring = new _5_Longest_Palindromic_Substring() ;
         String work = longest_palindromic_substring.work(str);
@@ -93,6 +93,12 @@ public class _5_Longest_Palindromic_Substring {
     }
 
     class Solution1 {
+        /**
+         * 使用子解的递归树，从root往下递归处理。
+         * 叶子节点的确定为 判断长度为 1和2时
+         *
+         * 递归遍历的三种方式:(i,j)=(i+1,j) (i,j)=(i,j-1) (i,j)=(i+1,j-1)
+         */
 
         private int maxLen = 0 ;
         private int maxL = 0 ;
@@ -137,8 +143,8 @@ public class _5_Longest_Palindromic_Substring {
                 return true ;
             } else {
                 isP[l][r] = 2 ;
-                recursion(l+1, r, s) ;
-                recursion(l, r-1, s) ;
+                if (l+1 <= r) recursion(l+1, r, s) ;
+                if (l <= r-1) recursion(l, r-1, s) ;
                 return false ;
             }
         }
