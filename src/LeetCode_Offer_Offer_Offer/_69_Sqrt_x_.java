@@ -40,6 +40,7 @@ public class _69_Sqrt_x_ {
                 if (mid > x / mid) {
                     r = mid - 1;
                 } else {
+                    // 在这个位置可以保证mid的值小于等于x. 故考虑下一个值即可。
                     if ((mid+1) > (x)/(mid+1))
                             return mid ;
                     l = mid + 1 ;
