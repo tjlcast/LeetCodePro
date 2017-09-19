@@ -55,9 +55,10 @@ public class _84_Largest_Rectangle_in_Histogram {
 
             for(int i=0; i<=heights.length; i++) {
 
-                    int curHeight = (i==heights.length) ? (0) : (heights[i]) ;
+                    int curHeight = (i==heights.length) ? (0) : (heights[i]) ; // 在所有的数据遍历后，使用一个较小的数。
 
                     while(stack.size()!=0 && curHeight <  heights[stack.peek()]) {
+                        // 比当前元素大的数值都会从stack中弹出。留下来的数值是小于等于当前值，故取stack的顶部元素作为区间的最左值。
                         int height = heights[stack.pop()] ;
                         int len = (i - ((stack.isEmpty()) ? (l+1) : (stack.peek()+1))) ;
                         maxArea = Math.max(maxArea, height*len) ;
