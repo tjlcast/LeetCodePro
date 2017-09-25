@@ -2,6 +2,10 @@ package LeetCode_Offer_Offer_Offer;
 
 import Type.TreeNode;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+
 /**
  * Created by tangjialiang on 2017/9/25.
  */
@@ -16,7 +20,14 @@ public class _99_Recover_Binary_Search_Tree {
      */
 
     public static void main(String[] args) {
+        Integer[] arrays = {1,2,3,4,5};
+        List<Integer> list = Arrays.asList(arrays);
+        list.stream().map(it->it*2).forEach(System.out::println);
 
+        _99_Recover_Binary_Search_Tree recover_binary_search_tree = new _99_Recover_Binary_Search_Tree();
+        recover_binary_search_tree.work(null);
+
+        System.out.println("work is: ") ;
     }
 
     public void work(TreeNode root) {
