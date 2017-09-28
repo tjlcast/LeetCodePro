@@ -53,8 +53,6 @@ public class _2_Solution{
         return true ;
     }
 
-
-
     public static void main(String[] args) {
         _2_Solution sol = new _2_Solution() ;
         sol.work() ;
