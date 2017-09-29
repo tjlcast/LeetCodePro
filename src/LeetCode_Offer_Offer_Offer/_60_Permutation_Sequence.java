@@ -1,7 +1,5 @@
 package LeetCode_Offer_Offer_Offer;
 
-import com.sun.tools.javac.util.ArrayUtils;
-
 import java.util.Arrays;
 import java.util.Collections;
 

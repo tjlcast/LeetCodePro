@@ -6,8 +6,50 @@ import java.util.* ;
 public class _6_Solution {
     // merge find set
 
+    private int[] rows ;
+    private int[] cols ;
+    private int[] arr ;
+    private int len = -1 ;
+
     public String work(int len, int[] rows, int[] cols) {
-        return "" ;
+        this.len = len ;
+        this.rows = rows ;
+        this.cols = cols ;
+        this.arr = new int[len] ;
+
+        // for every possible position that can be the in-node,
+        // and compute every nodes' distance to the in-node.
+        for(int i=0; i<len; i++) {
+            for(int j=0; j<len; j++) {
+                // every possible in-node
+                PriorityQueue<Integer> diffs = new PriorityQueue<>() ;
+
+                for (int k=0; k<len; k++) {
+                    // every nodes
+                    int diff = getDiff(rows[i], rows[k], cols[j], cols[k]);
+                    diffs.add(diff) ;
+                }
+
+                // the number of diffs must be len
+                int total = 0 ;
+                for(int step=1; step<=len; step++) {
+                    total += diffs.poll() ;
+                    arr[step-1] = total ;
+                }
+            }
+        }
+
+        return l2s(arr) ; // ans 2 str
+    }
+
+    private int getDiff(int r1, int r2, int c1, int c2) {
+        return Math.abs(r1 - r2) + Math.abs(c1 - c2) ;
+    }
+
+    private String l2s(int[] arr) {
+        StringBuilder sb = new StringBuilder() ;
+        for(Integer i : arr) sb.append(sb + " ") ;
+        return sb.toString().trim() ;
     }
 
     public static void main(String[] args) throws Exception{
