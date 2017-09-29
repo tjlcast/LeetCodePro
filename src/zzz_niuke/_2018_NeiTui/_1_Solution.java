@@ -28,34 +28,31 @@ public class _1_Solution {
      */
 
 
-    class Main {
+    private HashMap<Character, Integer> charMap = new HashMap<Character, Integer>() ;
 
-        private HashMap<Character, Integer> charMap = new HashMap<Character, Integer>() ;
+    public void main(String[] args) {
+        Scanner scann = new Scanner(System.in) ;
+        String inputStr = scann.nextLine() ;
 
-        public void main(String[] args) {
-            Scanner scann = new Scanner(System.in) ;
-            String inputStr = scann.nextLine() ;
+        _1_Solution solution = new _1_Solution();
+        int work = solution.work(inputStr);
 
-            Main solution = new Main();
-            int work = solution.work(inputStr);
+        System.out.println(work) ;
+    }
 
-            System.out.println(work) ;
+    private int work(String inputStr) {
+
+        for(int i=0; i<inputStr.length(); i++) {
+            char c = inputStr.charAt(i) ;
+            Integer n = (charMap.get(c)==null)?(0):(charMap.get(c)) ;
+            charMap.put(c, n+1) ;
         }
 
-        private int work(String inputStr) {
-
-            for(int i=0; i<inputStr.length(); i++) {
-                char c = inputStr.charAt(i) ;
-                Integer n = (charMap.get(c)==null)?(0):(charMap.get(c)) ;
-                charMap.put(c, n+1) ;
-            }
-
-            if (charMap.keySet().size()<=2) {
-                return charMap.keySet().size();
-            }
-
-            return 0 ;
+        if (charMap.keySet().size()<=2) {
+            return charMap.keySet().size();
         }
+
+        return 0 ;
     }
 }
 

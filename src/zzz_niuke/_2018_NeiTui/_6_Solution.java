@@ -4,97 +4,10 @@ import java.io.* ;
 import java.util.* ;
 
 public class _6_Solution {
-
     // merge find set
-    class Edge implements Comparable<Edge> {
-        int aPos ;
-        int bPos ;
-        int edge ;
-
-        public Edge(int aPos, int bPos, int edge) {
-            this.aPos = aPos ;
-            this.bPos = bPos ;
-            this.edge = edge ;
-        }
-
-        @Override
-        public int compareTo(Edge e) {
-            return edge - e.edge ;
-        }
-    }
-
-    private int[] rows = null ;
-    private int[] cols = null ;
-    private int len = -1 ;
-
-    private HashSet<Integer> visited = new HashSet<Integer>() ;
-    private HashSet<Integer> unVisited = new HashSet<Integer> () ;
-    private PriorityQueue<Edge> edges = new PriorityQueue<>() ;
-
-    private int[] ans = null ;
 
     public String work(int len, int[] rows, int[] cols) {
-        int count = 0 ;
-        int step = 0 ;
-
-        this.rows = rows ;
-        this.cols = cols ;
-        this.len = len ;
-
-        ans = new int[len] ;
-
-
-        for(int i=0; i<len; i++) {
-            unVisited.add(i) ;
-            for(int j=i+1; j<len; j++) {
-                edges.add(new Edge(i, j, distance(i, j))) ;
-            }
-        }
-
-        if (!edges.isEmpty()) {
-            Edge poll = edges.poll();
-            unVisited.remove(poll.aPos) ;
-            unVisited.remove(poll.bPos) ;
-
-            visited.add(poll.aPos);
-            visited.add(poll.bPos) ;
-
-            step += poll.edge ;
-            ans[count++] = step ;
-        }
-
-        while(!edges.isEmpty()) {
-            Edge poll = edges.poll();
-
-            if (unVisited.contains(poll.aPos) && visited.contains(poll.bPos)) {
-                unVisited.remove(poll.aPos) ;
-                visited.add(poll.bPos) ;
-
-                step += poll.edge ;
-                ans[count++] = step ;
-            }
-
-            if (unVisited.contains(poll.bPos) && visited.contains(poll.aPos)) {
-                unVisited.remove(poll.bPos) ;
-                visited.add(poll.aPos) ;
-
-                step += poll.edge ;
-                ans[count++] = step ;
-            }
-
-        }
-
-        return l2S(ans) ;
-    }
-
-    private int distance(int i, int j) {
-        return Math.abs(rows[i]-rows[j]) + Math.abs(cols[i]-cols[j]) ;
-    }
-
-    private String l2S(int[] nums) {
-        StringBuilder sb = new StringBuilder() ;
-        for(int i=0; i<nums.length; i++) sb.append(nums[i]+" ") ;
-        return sb.toString().trim() ;
+        return "" ;
     }
 
     public static void main(String[] args) throws Exception{
