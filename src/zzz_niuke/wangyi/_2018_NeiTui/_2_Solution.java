@@ -1,4 +1,4 @@
-package zzz_niuke._2018_NeiTui;
+package zzz_niuke.wangyi._2018_NeiTui;
 
 import java.io.*;
 import java.util.* ;

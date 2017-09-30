@@ -1,7 +1,6 @@
-package zzz_niuke._2018_NeiTui;
+package zzz_niuke.wangyi._2018_NeiTui;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**

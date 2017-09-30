@@ -1,9 +1,8 @@
-package zzz_niuke._2018_NeiTui;
+package zzz_niuke.wangyi._2018_NeiTui;
 
 /**
  * Created by tangjialiang on 2017/9/28.
  */
-import java.util.* ;
 import java.io.* ;
 
 public class _3_Solution{
