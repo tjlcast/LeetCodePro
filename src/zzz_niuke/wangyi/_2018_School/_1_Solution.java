@@ -21,7 +21,7 @@ public class _1_Solution {
      输出一个字符串,每个字符表示该次小易选取投入的魔法机器。其中只包含字符'1'和'2'。
 
      输入例子1:
-     10
+     +10
 
      输出例子1:
      122
@@ -44,56 +44,63 @@ public class _1_Solution {
     private LinkedList<Integer> nums = new LinkedList<>() ;
 
     public String work(int x, int n) {
-        generateStr(x, n);
+        generateStr(n);
         return (ans==null)?(""):(ans) ;
     }
 
-    private void generateStr(int x, int n) {
-        System.out.format("x: %d n: %d\n", x, n) ;
-
-        int count = x ;
-
-        while(count < n) {
-            if (count>=2 && count+2+2<=n) {
-                count = count + 4 ;
-                nums.addFirst(2);
-            }
-            else if (count>=2 && count+2+1<=n) {
-                count = count + 3 ;
-                nums.addFirst(2);
-            }
-            else if (count>=1 && count+1+2<=n) {
-                count = count + 3 ;
-                nums.addFirst(1);
-            }
-            else if (count>=1 && count+1+1<=n) {
-                count = count + 2 ;
-                nums.addFirst(1);
-            }
-            else if (count>=0 && count+0+2<=n) {
-                count = count + 2 ;
-                nums.addFirst(0);
-            }
-            else if (count>=0 && count+0+1<=n) {
-                count = count + 1 ;
-                nums.addFirst(0);
+    private void generateStr(int n) {
+        int count = n ;
+        while(count > 0) {
+            if (count % 2 != 0) {
+                // current num is odd, add 1
+                nums.add(1) ;
+                count = (count - 1) / 2 ;
+            } else {
+                // current num id even, add 2
+                nums.add(2) ;
+                count = (count - 2) / 2 ;
             }
         }
+
+        // list 2 string
+        StringBuilder sb = new StringBuilder() ;
+        for(Integer i : nums) {
+            sb.append(i) ;
+        }
+        sb.reverse() ;
+        this.ans = sb.toString() ;
+    }
+
+    private void generateStr(int count, int n) {
+        // machine 1 can add exp 1 coins
+        // machine 2 can add exp 2 coins
 
         if (count == n) {
             StringBuilder sb = new StringBuilder() ;
             for(Integer i : nums) {
-                if (i==0) {
-                    sb.append(" ") ;
-                } else {
-                    sb.append(i+"") ;
-                }
+                sb.append(i) ;
             }
-            ans = sb.toString().trim() ;
+            sb.reverse() ;
+            this.ans = sb.toString() ;
         }
 
+        if (count < n) {
+            int diff = n - count ;
+            if (diff >= (count + 2)) {
+                nums.addFirst(2);
+                generateStr(count + (count + 2), n);
+                nums.removeFirst() ;
+            }
 
-        return ;
-    }
+            // if ans has been found
+            if (ans != null) return ;
+
+            if (diff >= (count + 1)) {
+                nums.addFirst(1) ;
+                generateStr(count + (count + 1), n);
+                nums.removeFirst() ;
+            }
+        }
+   }
 
 }
