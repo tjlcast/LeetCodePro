@@ -48,11 +48,20 @@ public class _4_Solution {
         System.out.println(res) ;
     }
 
-    public String work(int n, int L, int[] parents) {
-        LinkedList<Integer> queue = new LinkedList<Integer>() ;
+    private int[] cityRoad = new int[300] ; // 300 for max number of cities.
 
-        int step = 1 ;
+    private String work(int n, int L, int[] parents) {
+        int maxRoad = 0 ;
 
-        return "" ;
+        for(int i=0; i<parents.length; i++) {
+            cityRoad[i+1] = cityRoad[parents[i]] + 1 ;
+            maxRoad = Math.max(maxRoad, cityRoad[i+1]) ;
+        }
+
+        maxRoad = Math.min(L, maxRoad) ;
+        int ans = Math.min(n, 1 + maxRoad + (L - maxRoad)/2) ;
+
+        return ans + "" ;
     }
+
 }
