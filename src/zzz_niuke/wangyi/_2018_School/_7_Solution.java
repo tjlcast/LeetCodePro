@@ -46,9 +46,30 @@ public class _7_Solution {
         System.out.println(ans) ;
     }
 
-    private String work(int n, int[] nums) {
+    private int[][] dp = new int[2000][2000] ;
 
-        return "" ;
+    private String work(int n, int[] nums) {
+        dp[0][1] = 0 ;
+        dp[1][0] = 0 ;
+
+        for(int i=1; i<n; i++) {
+            for(int j=1; j<n; j++) {
+                int minV = Math.min(i, j) ;
+                int min_i_k = Integer.MAX_VALUE ;
+                int min_k_j = Integer.MAX_VALUE ;
+                for(int k=0; k<minV; k++) {
+                    if (min_i_k > dp[i][k] + Math.abs(nums[k] - nums[j])) {
+                        min_i_k = dp[i][k] + Math.abs(nums[k] - nums[j]) ;
+                    }
+                    if (min_k_j > dp[k][j] + Math.abs(nums[k] - nums[j])) {
+                        min_k_j = dp[k][j] + Math.abs(nums[k] - nums[j]) ;
+                    }
+                }
+                dp[i][j] = Math.min(min_i_k, min_k_j) ;
+            }
+        }
+
+        return dp[n-1][n-1] + "" ;
     }
 
 }
