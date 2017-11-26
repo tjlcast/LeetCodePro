@@ -29,9 +29,9 @@ public class _126_Word_Ladder_II {
      */
 
     public static void main(String[] args) {
-        String beginWord = "hit" ;
-        String endWord = "cog" ;
-        String[] arr = {"hot","dot","dog","lot","log","cog"} ;
+        String beginWord = "red" ;
+        String endWord = "tax" ;
+        String[] arr = {"ted","tex","red","tax","tad","den","rex","pee"} ;
         LinkedList<String> l = new LinkedList<>() ;
         for(String s : arr) {
             l.addLast(s);
@@ -53,84 +53,95 @@ public class _126_Word_Ladder_II {
         return ladders ;
     }
 
-    public class Solution1 {
-        private LinkedList<List<String>> ans = new LinkedList<>() ;
-        private HashMap<String, Boolean> isVisiten = new HashMap<>() ;
-        private boolean go = true ;
-
-        String beginWord = null ;
-        String endWord = null ;
-        List<String> wordList = null ;
-
-        public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-            this.beginWord = beginWord ;
-            this.endWord = endWord ;
-            this.wordList = wordList ;
-
-            LinkedList<String> list = new LinkedList<>() ;
-            list.add(beginWord) ;
-            bfs(list);
-
-            return ans ;
-        }
-
-        private void bfs(LinkedList<String> strList) {
-            String first = strList.getLast();
-            if (first==null) return ;
-
-            for(int i=0; i<wordList.size(); i++) {
-                String nextStr = wordList.get(i) ;
-
-                if (goByStep(first, nextStr)) {
-                    if (nextStr.equals(endWord)) {
-                        strList.addLast(nextStr) ;
-                        ans.addLast((List<String>)strList.clone());
-                        go = false ;
-                        strList.removeLast() ;
-                    } else if (isVisiten.getOrDefault(nextStr, false)==false) {
-                        strList.addLast(nextStr);
-                        isVisiten.put(nextStr, true) ;
-                        bfs(strList);
-                        strList.removeLast() ;
-                        isVisiten.put(nextStr, false) ;
-                    }
-                }
-            }
-        }
-
-        private boolean goByStep(String s, String t) {
-            int count = 0 ;
-            for(int i=0; i<s.length(); i++) {
-                if (s.charAt(i) != t.charAt(i)) {
-                    count++ ;
-                }
-            }
-
-            if (count == 1) return true ;
-            return false ;
-        }
-    }
-
     public class Solution {
+        List<List<String>> ans = new LinkedList<>() ;
         HashMap<String, List<String>> parents = new HashMap<>() ;
         HashMap<String, Boolean> isVisited = new HashMap<>() ;
 
+        String beginWord = null ;
+        String endWord = null ;
+
         List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+            this.beginWord = beginWord ;
+            this.endWord = endWord ;
+
+            String roundEnd = "" ;
             LinkedList<String> queue = new LinkedList<>() ;
             queue.addLast(beginWord);
+            queue.addLast(roundEnd) ;
             isVisited.put(beginWord, true) ;
 
-            while (queue.size()!=0) {
+            boolean flag = false ; // for bfs --> is find the endWord.
+
+            while (queue.size()!=1) {
                 String curStr = queue.removeFirst();
+                if (curStr == roundEnd) {
+                    if (flag) { System.out.println("end"); break ; }
+                    queue.addLast(roundEnd);
+                    continue;
+                }
+
                 isVisited.put(curStr, true) ;
 
                 for(String candidate : wordList) {
                     if(goByStep(candidate, curStr) && isVisited.getOrDefault(candidate, false)==false) {
+                        if (candidate.equals(endWord)) {
+                            flag = true ;
+                        }
 
+                        List<String> ps = parents.getOrDefault(candidate, new LinkedList<>());
+                        if(!isVisited.getOrDefault(candidate, false))ps.add(curStr) ;
+                        parents.put(candidate, ps) ;
+
+                        if(!queue.contains(candidate) && !flag)queue.addLast(candidate);
                     }
                 }
             }
-            return null ;
+
+            // use bfs to generate the parents
+            queue = new LinkedList<>() ;
+            queue.addLast(beginWord);
+
+            while (true) {
+                // from old queue to
+            }
+
+            // test
+//            for(String key : parents.keySet()) {
+//                System.out.print(key + " -> ") ;
+//                for(String val : parents.get(key)) {
+//                    System.out.print(" " + val) ;
+//                }
+//                System.out.println() ;
+//            }
+
+            // get parents
+            try {
+                LinkedList<String> strings = new LinkedList<>();
+                strings.addLast(endWord);
+                dfs(endWord, strings) ;
+            } catch (Exception e) {
+                System.out.println(e) ;
+            }
+
+            return ans ;
+        }
+
+        private void dfs(String root, LinkedList<String> strs) {
+            // if root == beginWord
+            if (root.equals(beginWord)) {
+                LinkedList<String> clone = (LinkedList<String>)strs.clone();
+                ans.add(clone) ;
+                return ;
+            }
+
+            // go to generate next round
+            List<String> strings = parents.get(root) ;
+            for(String word : strings) {
+                strs.addFirst(word);
+                dfs(word, strs) ;
+                strs.removeFirst() ;
+            }
         }
 
         private boolean goByStep(String s, String t) {
