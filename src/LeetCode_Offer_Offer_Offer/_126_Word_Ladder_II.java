@@ -103,7 +103,12 @@ public class _126_Word_Ladder_II {
             queue.addLast(beginWord);
 
             while (true) {
-                // from old queue to
+                // from old queue to new queue 
+						LinkedList<> newQueue = new LinkedList() ;
+						while(queue.size() != 0) {
+							String str = queue.removeLast() ;
+							
+						}
             }
 
             // test
