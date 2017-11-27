@@ -110,6 +110,7 @@ public class _127_Word_Ladder {
             for(int i=0; i<s.length(); i++) {
                 if (s.charAt(i) != t.charAt(i)) {
                     count++ ;
+                    if (count > 1) return false ;
                 }
             }
 
