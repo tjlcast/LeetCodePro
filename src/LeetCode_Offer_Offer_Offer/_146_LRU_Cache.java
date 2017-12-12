@@ -23,6 +23,17 @@ public class _146_LRU_Cache {
 
     static class LRUCache {
 
+        /**
+         * tips: 一个双向链表 + 一个hashMap
+         *
+         * 双向链表
+         * 1、双向链表的节点保存key和val，key是为了在快速【O（1）】中在HashMap中定位。
+         * 2、双向链表的实现使用Head + Tail的形式。
+         *
+         * HashMap
+         * 1、为key到双向链表节点的映射。
+         */
+
         private Node head = new Node(-1,-1) ;
         private Node tail = new Node(-1,-1) ;
         private HashMap<Integer, Node> recorder = new HashMap<>() ;
