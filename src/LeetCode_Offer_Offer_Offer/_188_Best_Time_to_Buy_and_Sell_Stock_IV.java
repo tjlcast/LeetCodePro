@@ -43,6 +43,21 @@ public class _188_Best_Time_to_Buy_and_Sell_Stock_IV {
          */
         public int maxProfit(int k, int[] prices) {
             int n = prices.length ;
+
+            // validate input 1
+            if (k <= 0 || n == 0) return 0;
+
+            // validate input 2 : if k is large enough, the question will be the same as question II.
+            if (k >= n / 2) {
+                int result = 0;
+                for (int i = 1; i < n; ++i) {
+                    if (prices[i] - prices[i - 1] > 0) {
+                        result += prices[i] - prices[i - 1];
+                    }
+                }
+                return result;
+            }
+
             if (k <= 0 || n == 0) return 0 ;
 
             int[][] localProfit = new int[n][k + 1] ;
@@ -58,6 +73,23 @@ public class _188_Best_Time_to_Buy_and_Sell_Stock_IV {
                 }
 
             return globalProfit[n - 1][k] ;
+        }
+    }
+
+    static class Solution_1 {
+        public int maxProfit(int k, int[] prices) {
+            int len = prices.length ;
+
+            int[][] t = new int[k+1][len] ;
+            for(int i=1; i<=k; i++) {
+                int tmpMax = -prices[0] ;
+                for(int j=1; j<len; j++) {
+                    t[i][j] = Math.max(t[i][j - 1], prices[j] + tmpMax) ;
+                    tmpMax = Math.max(tmpMax, t[i - 1][j - 1] - prices[j]) ;
+                }
+            }
+
+            return t[k][len - 1] ;
         }
     }
 }
