@@ -65,7 +65,7 @@ public class _189_Rotate_Array {
     /**
      * 流处理（暴力）
      */
-    static class Solution {
+    static class Solution_1 {
         public void rotate(int[] nums, int k) {
             LinkedList<Integer> queue = new LinkedList<>() ;
 
