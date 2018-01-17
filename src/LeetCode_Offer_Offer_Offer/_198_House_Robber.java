@@ -26,8 +26,8 @@ public class _198_House_Robber {
     }
 
     static class Solution {
+
         public int rob(int[] nums) {
-            // todo
             int ans = 0 ;
             int n = nums.length;
             if (n==0) return 0 ;
