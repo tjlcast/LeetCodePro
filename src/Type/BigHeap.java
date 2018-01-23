@@ -55,6 +55,8 @@ public class BigHeap {
         length -= 1 ;
 
         adjuestDown(1);
+
+        return ans ;
     }
 
     public void adjuestDown(int pos) throws Exception {
