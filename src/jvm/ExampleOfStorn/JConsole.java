@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class JConsole {
 
+    /**
+     * 测试使用JConsole进行java程序的观测
+     */
+
     static class OOMObject {
         public byte[] placeholder = new byte[64 * 1024] ;
     }

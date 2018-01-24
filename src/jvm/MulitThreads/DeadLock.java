@@ -4,6 +4,12 @@ package jvm.MulitThreads;
  * Created by tangjialiang on 2018/1/23.
  */
 public class DeadLock {
+    /**
+     * 用于对多线程死锁的测试,
+     * 线程的状态变化： blocked
+     * 某个线程占有对象a，
+     * 某个线程占有对象b
+     */
 
     static class SynAddRunalbe implements Runnable {
         int a, b ;

@@ -10,6 +10,7 @@ public class SamplesOfThread {
 
     /**
      * 线程死循环演示
+     * 用于测试线程的状态变化: runing, waiting
      */
     public static void createBusyThread() {
         Thread thread = new Thread(new Runnable() {
