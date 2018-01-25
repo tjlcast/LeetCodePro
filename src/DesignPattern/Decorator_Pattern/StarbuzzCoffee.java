@@ -2,6 +2,8 @@ package DesignPattern.Decorator_Pattern;
 
 /**
  * Created by tangjialiang on 2018/1/25.
+ *
+ * 对扩张开发，对修改关闭
  */
 public class StarbuzzCoffee {
     /**
