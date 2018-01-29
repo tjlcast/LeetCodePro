@@ -50,6 +50,17 @@ public class SumTask extends RecursiveTask<Long> {
 
         SumTask subTask1 = new SumTask(this.arry, start, middle) ;
         SumTask subTask2 = new SumTask(this.arry, middle, end) ;
+        /**
+         * 这如果使用以下启动是不理想的
+         *
+         subtask1.fork();
+         subtask2.fork();
+         *
+         * 这是因为执行compute()方法的线程本身也是一个Worker线程，
+         * 当对两个子任务调用fork()时，这个Worker线程就会把任务分配给另外两个Worker，
+         * 但是它自己却停下来等待不干活了！这样就白白浪费了Fork/Join线程池中的一个Worker线程，
+         * 导致了4个子任务至少需要7个线程才能并发执行。
+         */
         invokeAll(subTask1, subTask2);
 
         // wait sub task finish !!
