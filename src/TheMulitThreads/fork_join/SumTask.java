@@ -1,14 +1,10 @@
-package MulitThreads.fork_join;
+package TheMulitThreads.fork_join;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
-import java.util.stream.Collectors;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
 
 /**
  * Created by tangjialiang on 2018/1/29.
