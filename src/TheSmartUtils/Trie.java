@@ -1,4 +1,4 @@
-package SmartUtils;
+package TheSmartUtils;
 
 import java.util.Collection;
 

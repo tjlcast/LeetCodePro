@@ -1,4 +1,4 @@
-package SmartUtils;
+package TheSmartUtils;
 
 /**
  * Created by tangjialiang on 2018/1/28.
