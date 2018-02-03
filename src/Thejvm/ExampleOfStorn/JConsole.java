@@ -1,4 +1,4 @@
-package jvm.ExampleOfStorn;
+package Thejvm.ExampleOfStorn;
 
 import java.util.ArrayList;
 import java.util.List;

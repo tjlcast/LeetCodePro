@@ -1,7 +1,6 @@
-package jvm.MulitThreads;
+package Thejvm.MulitThreads;
 
 import java.io.* ;
-import java.util.* ;
 
 /**
  * Created by tangjialiang on 2018/1/23.

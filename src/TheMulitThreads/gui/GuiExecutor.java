@@ -1,4 +1,4 @@
-package MulitThreads.gui;
+package TheMulitThreads.gui;
 
 /**
  * Created by tangjialiang on 2018/1/25.

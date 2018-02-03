@@ -1,4 +1,4 @@
-package MulitThreads.Map;
+package TheMulitThreads.Map;
 
 /**
  * Created by tangjialiang on 2018/1/25.
