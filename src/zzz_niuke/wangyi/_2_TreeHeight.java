@@ -1,8 +1,7 @@
 package zzz_niuke.wangyi;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
+import java.io.* ;
+import java.util.* ;
 
 /**
  * Created by tangjialiang on 2017/10/11.
