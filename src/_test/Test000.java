@@ -1,5 +1,7 @@
 package _test;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by tangjialiang on 2018/1/31.
  */
@@ -14,6 +16,12 @@ public class Test000 {
     public static final int THREADS_COUNT = 20 ;
 
     public static void main(String[] args) {
+        ConcurrentHashMap<Integer, Integer> chm = new ConcurrentHashMap<>() ;
+
+        for(int i=0; i<1000; i++) {
+            chm.put(i, i) ;
+        }
+
         Thread[] threads = new Thread[THREADS_COUNT] ;
         for(int i=0; i<threads.length; i++) {
             threads[i] = new Thread(new Runnable() {
