@@ -16,6 +16,18 @@ import java.util.* ;
 
 public class Main1 {
 
+    /**
+     * by tjlcast
+     *
+     * choose two x in all x's.
+     * and choose all matrix who over the two lines(positioned by two x's)
+     * at last use y' s in whom matirx choosed.
+     * (to change the pro ==> section over pro on 1'D).
+     *
+     * use two sets (repeat) to record in-pointer and out-pointer.
+     * then for all pointers (left to right) counter +1 if in i-p or -1 in o-p
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in) ;
 
