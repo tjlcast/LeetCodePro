@@ -59,7 +59,12 @@ public class Main1 {
                 if (x_a == x_b) continue;
                 HashMap<Integer, Integer> inPoints = new HashMap<>() ;
                 HashMap<Integer, Integer> outPoints = new HashMap<>() ;
-                LinkedList<Integer> points = new LinkedList<>();
+                TreeSet<Integer> points = new TreeSet<>(new Comparator<Integer>() {
+                    @Override
+                    public int compare(Integer o1, Integer o2) {
+                        return o2-o1;
+                    }
+                });
                 for (int i = 0; i < n; i++) {
                     if (Math.min(x_a,x_b)<=x1[i] && x2[i]<=Math.max(x_a, x_b)) {
                         inPoints.put(Math.max(y1[i], y2[i]), inPoints.getOrDefault(Math.max(y1[i], y2[i]), 0)+1) ;
@@ -68,12 +73,7 @@ public class Main1 {
                         points.add(y2[i]) ;
                     }
                 }
-                Collections.sort(points, new Comparator<Integer>() {
-                    @Override
-                    public int compare(Integer o1, Integer o2) {
-                        return o2-o1;
-                    }
-                });
+
                 int curH = 0 ;
                 for(Integer point : points) {
                     curH += inPoints.getOrDefault(point, 0) ;
