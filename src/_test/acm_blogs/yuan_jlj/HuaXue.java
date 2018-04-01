@@ -47,7 +47,6 @@ public class HuaXue {
         int c ;
 
         public int work(int[][] matrix, int r, int c) {
-            // todo
             int ans = 0 ;
             dp = new int[r][c] ;
             this.r = r ;
