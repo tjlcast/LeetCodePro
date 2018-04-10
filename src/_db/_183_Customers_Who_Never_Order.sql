@@ -35,7 +35,7 @@ Using the above tables as example, return the following:
 
 select Customers
 from (
-  select Customers.Name as Customers, Orders.Id
-  from Orders left join Customers on Customers.Id=Orders.CustomerId
+  select Customers.Id as CustomerId, Customers.Name as Customers, Orders.Id as OrderId
+  from Customers left join Orders on Customers.Id=Orders.CustomerId
 ) as customerleftjoinorder
-group by Customers HAVING count(*)=0 ;
+group by CustomerId HAVING count(OrderId)=0 ;
