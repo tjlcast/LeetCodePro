@@ -1,6 +1,7 @@
 package DynamicProgramming;
 
 import java.util.Stack;
+import static java.lang.Math.max ;
 
 /**
  * Created by tangjialiang on 17/5/11.
@@ -20,6 +21,37 @@ public class _32_Longest_Valid_Parentheses {
 
     public int work(String s) {
         return new Solution().longestValidParentheses(s) ;
+    }
+
+    class Solution1 {
+        int longestValidParentheses(String s) {
+            int ans = 0 ;
+            char[] ops = s.toCharArray() ;
+            int len = ops.length ;
+
+            // init
+            int[] dp = new int[len] ;
+            for (int i = 0; i < len; i++) {
+                if (i-1>=0 && ops[i-1]=='(' && ops[i]==')') dp[i] = 2 ;
+            }
+
+            // dp
+            for (int i = 1; i < len; i++) {
+                if (ops[i] == '(') continue;
+
+                int workPos = i-1-(dp[i-1]-1) ;
+                if (workPos-1>=0 && ops[workPos-1]=='(') {
+                    dp[i] = dp[i-1] + 2 + ((workPos-2>=0) ? (dp[workPos-2]) : (0)) ;
+                }
+            }
+
+            for (Integer i :
+                    dp) {
+                ans = max(ans, i) ;
+            }
+
+            return ans ;
+        }
     }
 
     class Solution {
