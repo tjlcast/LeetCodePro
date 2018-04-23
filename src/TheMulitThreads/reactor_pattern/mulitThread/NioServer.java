@@ -20,7 +20,7 @@ public class NioServer {
     }
 
     /**
-     * 连接线程模型， 反应对， 转发器 Acceptor
+     * 连接线程模型， 反应堆， 转发器 Acceptor
      */
     private static final class Acceptor implements Runnable {
 
