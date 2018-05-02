@@ -1,0 +1,68 @@
+一个网络服务程序时需要管理大量客户端连接的，其中每个客户端连接都需要管理它的 timeout 时间。
+通常连接的超时管理一般设置为30~60秒不等，并不需要太精确的时间控制。
+另外由于服务端管理着多达数万到数十万不等的连接数，因此我们没法为每个连接使用一个Timer，那样太消耗资源不现实。
+
+========================================================================================================
+
+
+一种简单的实现方式，指针按 tickDuration 的设置进行固定频率的转动，其中的必要约定如下：
+
+新加入的对象总是保存在当前指针转动方向上一个位置
+相等的对象仅存在于一个 slot 中
+指针转动到当前位置对应的 slot 中保存的对象就意味着 timeout 了
+在 Timing Wheel 模型中包含4种操作：
+
+Client invoke：
+
+1. START_TIMER(Interval, Request_ID, Expiry_Action)
+
+2. STOP_TIMER(Request_ID)
+
+Timer tick invoke：
+
+3. PER_TICK_BOOKKEEPING
+
+4. EXPIRY_PROCESSING
+
+========================================================================================================
+
+ - START_TIMER(Interval, Request_ID, Expiry_Action) ，这段伪代码的实现对应于TimingWheel的 add(E e) 方法。
+
+首先检查同样的元素是否已添加到 TimingWheel 中，若已存在则删除旧的引用，重新安置元素在wheel中位置。这个检查是为了满足约束条件2（相等的对象仅存在于一个 slot 中，重新加入相同的元素相当于重置了该元素的 Timer）
+获取当前 tick 指针位置的前一个 slot 槽位，放置新加入的元素，并在内部记录下该位置
+返回新加入元素的 timeout 时间，以毫秒计算（一般的应用级程序到毫秒这个精度已经足够了）
+显然，时间复杂度为O(1)
+
+ - STOP_TIMER(Request_ID)，这段伪代码的实现对应于TimingWheel的 remove(E e) 方法。
+
+获取元素在 TimingWheel 中对应 slot 位置
+从中 slot 中删除
+显然，时间复杂度也为O(1)
+
+ - PER_TICK_BOOKKEEPING，伪代码对应于 TimingWheel 中 TickerWorker 中的  run() 方法。
+
+获取当前 tick 指针的 slot
+对当前 slot 的所有元素进行 timeout 处理（notifyExpired()）
+ticker 不需要针对每个元素去判断其 timeout 时间，故时间复杂度也为 O(1)
+
+
+ - EXPIRY_PROCESSING，伪代码对应于TimingWheel 中的 notifyExpired() 方法
+
+实现了对每个 timeout 元素的 Expiry_Action 处理
+这里时间复杂度显然 是 O(n)的。
+
+========================================================================================================
+
+在维护大量连接的例子中：
+
+连接建立时，把一个连接放入 TimingWheel 中进入 timeout 倒计时
+每次收到长连接心跳时，重新加入一次TimingWheel 相当于重置了 timer
+timeout 时间到达时触发 EXPIRY_PROCESSING
+EXPIRY_PROCESSING 实际就是关闭超时的连接。
+
+========================================================================================================
+
+这个简化版的 TimingWheel 实现一个实例只能支持一个固定的 timeout 时长调度，不能支持对于每个元素特定的 timeout 时长。
+
+一种改进的做法是设计一个函数，计算每个元素特定的deadline，并根据deadline计算放置在wheel中的特定位置，这个以后再完善。
+

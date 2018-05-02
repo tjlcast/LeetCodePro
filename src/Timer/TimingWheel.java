@@ -33,7 +33,7 @@ public class TimingWheel<E> {
 
     /**
      * construction of the class
-     * @param tickDuration <int> the time costed of a step.
+     * @param tickDuration <int> tick duration with specified time unit.
      * @param ticksPerWheel <int> the number of tick in a round.
      * @param timeUnit <TimeUnit> the class of time
      */
@@ -55,7 +55,7 @@ public class TimingWheel<E> {
         for (int i = 0; i < this.ticksPerWheel; i++) {
             wheel.add(new Slot<E>(i)) ;
         }
-        wheel.trimToSize(); // todo
+        wheel.trimToSize(); // 把该数组的实际长度变化到size大小.
 
         workerTread = new Thread(new TickWorker(), "Timing-Worker") ;
     }
@@ -99,14 +99,27 @@ public class TimingWheel<E> {
         return true ;
     }
 
+    /**
+     * add a expiration listener.
+     * @param listener
+     */
     public void addExpirationListener(ExpirationListener<E> listener) {
         expirationListeners.add(listener) ;
     }
 
+    /**
+     * remove a expiration listener.
+     * @param listener
+     */
     public void removeExpirationListener(ExpirationListener<E> listener) {
         expirationListeners.remove(listener) ;
     }
 
+    /**
+     * add a task to wheel.
+     * @param e
+     * @return
+     */
     public long add(E e) {
         synchronized (e) {
             checkAdd(e);
@@ -116,7 +129,7 @@ public class TimingWheel<E> {
             slot.add(e) ;
             indicator.put(e, slot) ;
 
-            return (ticksPerWheel - 1) * ticksPerWheel ;
+            return (ticksPerWheel - 1) * tickDuration ;
         }
     }
 
@@ -142,6 +155,11 @@ public class TimingWheel<E> {
         }
     }
 
+    /**
+     * remove a task(e) from the timer.
+     * @param e
+     * @return
+     */
     public boolean remove(E e) {
         synchronized (e) {
             Slot<E> slot = indicator.get(e) ;
@@ -174,4 +192,49 @@ public class TimingWheel<E> {
         }
     }
 
+    /**
+     * the private thread of the wheel timer.
+     */
+    private class TickWorker implements Runnable {
+        private long startTime ;
+        private long tick ;
+
+        @Override
+        public void run() {
+            startTime = System.currentTimeMillis() ;
+            tick = 1 ;
+
+            for (int i = 0; !shutDown.get(); i++) {
+                if (i == wheel.size()) i = 0 ;
+
+                lock.writeLock().lock();
+                try {
+                    currentTickIndex = i;
+                } finally {
+                    lock.writeLock().unlock();
+                }
+                notifyExpired(currentTickIndex);
+                waitForNextTick();
+            }
+        }
+
+        private void waitForNextTick() {
+            for (;;) {
+                long currentTime = System.currentTimeMillis() ;
+                long sleepTime = tickDuration * tick - (currentTime - startTime) ;
+
+                if (sleepTime < 0) {
+                    break ;
+                }
+
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    return ;
+                }
+            }
+
+            tick++ ;
+        }
+    }
 }
