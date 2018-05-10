@@ -13,7 +13,20 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  * Created by tangjialiang on 2018/5/2.
  */
 public class SortMain {
-
+    /**
+     * 对于常规的App一般做下面的配置
+     *
+     * 1/ 配置App的JarClass
+     *
+     * 2/ 配置Mapper的class和其输出类型[class]
+     *
+     * 3/ 配置Reducer的class和其输出类型[class]
+     *
+     * 4/ 配置该App的输入路径和输出路径
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         Job job = new Job(conf);

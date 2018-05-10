@@ -11,7 +11,6 @@ public class SmallHeap {
     int datas[] ;
 
     public SmallHeap(int size) {
-        // todo
         this.capacity = size+1 ;
         this.size = 0 ;
         datas = new int[capacity] ;

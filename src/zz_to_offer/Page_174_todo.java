@@ -10,7 +10,6 @@ public class Page_174_todo {
      */
 
     public static void main(String[] args) {
-        // todo
         int n = 12 ;
         int work = new Page_174_todo().work(n);
         System.out.println("work is : " + work) ;
