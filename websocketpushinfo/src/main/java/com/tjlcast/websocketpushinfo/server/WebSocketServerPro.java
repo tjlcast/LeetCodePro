@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
-@ServerEndpoint(value = "/websocket.md")
+@ServerEndpoint(value = "/websocket")
 @Component
 public class WebSocketServerPro{
 
