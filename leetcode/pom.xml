@@ -72,7 +72,7 @@
 
 
     <build>
-        <finalName>device-management</finalName>
+        <finalName>leetcode</finalName>
         <plugins>  <!-- 使用的插件列表 。 -->
             <plugin>  <!--maven编译插件-->
                 <groupId>org.apache.maven.plugins</groupId>
