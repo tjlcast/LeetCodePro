@@ -6,8 +6,8 @@ if(typeof(WebSocket) == "undefined") {
     console.log("您的浏览器支持WebSocket");
 
     //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
-    //socket = new WebSocket("ws://localhost:9094/starManager/websocket/张三")
-    socket = new WebSocket("ws://localhost:9094/starManager/websocket");
+    //socket = new WebSocket("ws://localhost:9094/starManager/websocket.md/张三")
+    socket = new WebSocket("ws://localhost:9094/starManager/websocket.md");
     //打开事件
     socket.onopen = function() {
         console.log("Socket 已打开");

@@ -22,7 +22,7 @@ public class GreetingController {
         return "/hello/index" ;
     }
 
-    @MessageMapping("/change-notice")
+    @MessageMapping("/change-notice") // send 地址 value 为发送数据
     public void greeting(String value) {    // for socket
         this.simpMessagingTemplate.convertAndSend("/topic/notice", value);
     }
