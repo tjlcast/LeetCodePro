@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	var url = "ws://localhost:8080/websocket"
+
+    var ws = new WebSocket(url);
+	
+	ws.onopen = function (e) {
+            alert("Connected") ;
+            ws.send('{"deviceId":"a886f290-54ff-11e8-b5bd-03061e178845"}') ;
+    } ;
+		
+	ws.onmessage = function (e) {
+        alert("Message received: " + e);
+	} ;
+
+</script>

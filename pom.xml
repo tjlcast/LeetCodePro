@@ -12,6 +12,8 @@
     <modules>
         <module>leetcode</module>
         <module>websocketpushinfo</module>
+        <module>disconfE</module>
+        <module>effective_java</module>
     </modules>
 
 </project>

@@ -1,6 +1,5 @@
-package com.tjlcast.websocketpushinfo.controller;
+package com.tjlcast.websocketpushinfo.package2;
 
-import com.tjlcast.websocketpushinfo.server.WebSocketServer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

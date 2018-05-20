@@ -1,4 +1,4 @@
-package com.tjlcast.websocketpushinfo.server;
+package com.tjlcast.websocketpushinfo.package2;
 
 /**
  * Created by tangjialiang on 2018/5/16.

@@ -1,4 +1,4 @@
-package com.tjlcast.websocketpushinfo.server;
+package com.tjlcast.websocketpushinfo.package2;
 
 import lombok.Getter;
 import lombok.Setter;
