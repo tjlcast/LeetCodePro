@@ -12,9 +12,13 @@
     <modules>
         <module>leetcode</module>
         <module>websocketpushinfo</module>
-        <module>disconfE</module>
         <module>effective_java</module>
         <module>AnnotationStory</module>
+        <module>rxjava</module>
     </modules>
+
+     <build>
+
+     </build>
 
 </project>
