@@ -15,10 +15,9 @@
         <module>effective_java</module>
         <module>AnnotationStory</module>
         <module>rxjava</module>
+        <module>myMetrics</module>
+        <module>MyRetrofitDemo</module>
+        <module>Demo</module>
     </modules>
-
-     <build>
-
-     </build>
 
 </project>
